@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Lock, Code, Zap, KeyRound, Target } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-const GlitchText = ({ text, className = "" }) => {
-  const [displayText, setDisplayText] = useState(text);
+interface GlitchTextProps {
+  text: string;
+  className?: string;
+}
+
+const GlitchText: React.FC<GlitchTextProps> = ({ text, className = "" }) => {
+  const [displayText, setDisplayText] = useState<string>(text);
   
   useEffect(() => {
     const glitchInterval = setInterval(() => {
@@ -11,7 +17,7 @@ const GlitchText = ({ text, className = "" }) => {
       
       const glitchTimer = setInterval(() => {
         setDisplayText(
-          text.split('').map((char, index) => {
+          text.split('').map((_char, index) => {
             if (index < iterations) return text[index];
             return chars[Math.floor(Math.random() * chars.length)];
           }).join('')
@@ -32,9 +38,10 @@ const GlitchText = ({ text, className = "" }) => {
   return <span className={className}>{displayText}</span>;
 };
 
-const EventsPage = () => {
-  const [activeCard, setActiveCard] = useState(null);
-  const [mounted, setMounted] = useState(false);
+const EventsPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [activeCard, setActiveCard] = useState<string | null>(null);
+  const [mounted, setMounted] = useState<boolean>(false);
   
   useEffect(() => {
     setMounted(true);
@@ -167,7 +174,10 @@ const EventsPage = () => {
                   </div>
                 </div>
                 
-                <button className="mt-auto w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-lg shadow-cyan-500/20">
+                <button 
+                  onClick={() => navigate('/sandbox')}
+                  className="mt-auto w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-lg shadow-cyan-500/20"
+                >
                   <span>ENTER SANDBOX</span>
                   <Code className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </button>
@@ -260,7 +270,10 @@ const EventsPage = () => {
                   </div>
                 </div>
                 
-                <button className="mt-auto w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-lg shadow-purple-500/20">
+                <button 
+                  onClick={() => navigate('/glitchcraft')}
+                  className="mt-auto w-full py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 group/btn shadow-lg shadow-purple-500/20"
+                >
                   <span>BEGIN DECIPHER</span>
                   <Lock className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                 </button>
@@ -276,4 +289,4 @@ const EventsPage = () => {
   );
 };
 
-export default Events;
+export default EventsPage;
