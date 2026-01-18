@@ -281,4 +281,4 @@ const EventsPage: React.FC = () => {
   );
 };
 
-export default Events;
+export default EventsPage;
