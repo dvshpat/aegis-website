@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Terminal, Lock, Code, Zap, KeyRound, Target } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+
 interface GlitchTextProps {
   text: string;
   className?: string;
@@ -38,7 +39,7 @@ const GlitchText: React.FC<GlitchTextProps> = ({ text, className = "" }) => {
   return <span className={className}>{displayText}</span>;
 };
 
-const EventsPage: React.FC = () => {
+const Events: React.FC = () => {
   const navigate = useNavigate();
   const [activeCard, setActiveCard] = useState<string | null>(null);
   const [mounted, setMounted] = useState<boolean>(false);
@@ -289,4 +290,4 @@ const EventsPage: React.FC = () => {
   );
 };
 
-export default EventsPage;
+export default Events;
