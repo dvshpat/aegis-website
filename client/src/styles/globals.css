@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://fonts.cdnfonts.com/css/ikaros');
+@import url('https://fonts.googleapis.com/css2?family=Proza+Libre:wght@400;500;600;700&display=swap');
 
 @custom-variant dark (&:is(.dark *));
 
@@ -214,5 +216,15 @@ body {
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  .font-heading {
+    font-family: 'Ikaros', system-ui, sans-serif;
+  }
+  
+  .font-body {
+    font-family: 'Proza Libre', system-ui, sans-serif;
   }
 }
